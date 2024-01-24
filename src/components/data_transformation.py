@@ -1,17 +1,14 @@
 import sys
 from dataclasses import dataclass
-
 import numpy as np 
 import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder,StandardScaler
-
 from src.exception import CustomException
 from src.logger import logging
 import os
-
 from src.utils import save_object
 
 @dataclass 
@@ -44,7 +41,6 @@ class DataTransformation:
 
                 ]
             )
-
             cat_pipeline=Pipeline(
 
                 steps=[
@@ -52,9 +48,7 @@ class DataTransformation:
                 ("one_hot_encoder",OneHotEncoder()),
                 ("scaler",StandardScaler(with_mean=False))
                 ]
-
             )
-
             logging.info(f"Categorical columns: {categorical_columns}")
             logging.info(f"Numerical columns: {numerical_columns}")
 
@@ -62,9 +56,7 @@ class DataTransformation:
                 [
                 ("num_pipeline",num_pipeline,numerical_columns),
                 ("cat_pipelines",cat_pipeline,categorical_columns)
-
                 ]
-
 
             )
 
